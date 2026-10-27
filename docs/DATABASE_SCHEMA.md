@@ -12,7 +12,7 @@ Database: one PostgreSQL 16 database, shared by all modules.
 
 | Topic | Rule |
 |---|---|
-| Primary keys | `id UUID PRIMARY KEY DEFAULT gen_random_uuid()` on every table (built in since PostgreSQL 13, no extension needed). No integer IDs. |
+| Primary keys | `id UUID PRIMARY KEY` on every table. **The application generates the UUID** (`uuid.uuid4()` as the SQLAlchemy column default), so no database default is required and the same models run on PostgreSQL and on the SQLite used by the quick tests. No integer IDs. |
 | Foreign keys | UUID, named `<entity>_id` (e.g. `student_id`, `class_id`). Always declared as real FK constraints. |
 | Table names | `snake_case`, plural (`students`, `fee_invoices`). Junction tables `a_b` (`student_parents`). |
 | Timestamps | `created_at TIMESTAMPTZ NOT NULL DEFAULT now()` and `updated_at TIMESTAMPTZ NOT NULL DEFAULT now()` on every mutable table. Stored in UTC; the apps display Asia/Karachi (UTC+5). |

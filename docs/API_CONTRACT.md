@@ -234,3 +234,22 @@ Member 1's endpoints (proposed paths): `GET /reports/result-card/{student_id}?ex
 - Additive changes (new optional field, new endpoint) can be made by the owner and announced in the PR description.
 - Breaking changes (rename, remove, change type or meaning) need the other member's approval **and** an update to this file in the same PR.
 - This file is the source of truth. If code and this file disagree, fix one of them in the same PR.
+---
+
+## 7. Lookup endpoints (Member 2, read-only helpers for the Flutter screens)
+
+The Flutter forms need small lists (which sections can I pick? who are my children? which subjects do I teach?). These helper endpoints are **read-only**, live under `/api/v1/lookups`, need a Bearer token, and are scoped in the database query to what the caller may see. They are **separate from Faizan's real CRUD endpoints** for students, teachers, classes, sections and subjects, which are unaffected: these never create, change or delete anything, and Faizan's code does not need to call them.
+
+| Method | Path | Roles | Returns |
+|---|---|---|---|
+| GET | `/lookups/academic-year/current` | all | `{ id, name, start_date, end_date }`, or 404 if none is current |
+| GET | `/lookups/classes` | all | `[{ id, name, grade_level }]`. Admin: all active classes. Others: only classes of sections they can see |
+| GET | `/lookups/sections` | all | `[{ id, name, class_id, class_name, display }]`, `display` like `Class 8-A`. Admin: all; teacher: sections they teach or are class teacher of; student: own; parent: children's |
+| GET | `/lookups/subjects` | all | `[{ id, name, code }]` active subjects |
+| GET | `/lookups/teachers` | A | `[{ id, user_id, full_name, employee_no }]` |
+| GET | `/lookups/students?section_id=&limit=` | A, T | `[{ id, roll_no, full_name, section_id, section_name }]`. Teacher: only sections they teach / are class teacher of (a `section_id` outside that returns 404). Students and parents get 403 (parents use `/lookups/my-children`) |
+| GET | `/lookups/my-children` | P | the parent's linked children, same shape as above |
+| GET | `/lookups/my-teaching` | T | `[{ section_id, section_name, subject_id, subject_name }]` from `teacher_assignments` (current academic year preferred) |
+| GET | `/lookups/my-student` | S | the student's own record, same shape as above |
+
+They read Faizan's tables through `app/modules/ops_common/core_refs.py` (see INTEGRATION_GUIDE.md), so when his real models replace the temporary stubs only that one import block changes.

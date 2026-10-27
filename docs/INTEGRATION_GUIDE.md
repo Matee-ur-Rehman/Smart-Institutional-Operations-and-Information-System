@@ -34,7 +34,7 @@ Smart-Institutional-Operations-and-Information-System/
 │   │   ├── core/              config.py, database.py, security.py, access.py, errors.py   (M1)
 │   │   └── modules/
 │   │       ├── auth/ students/ parents/ teachers/ academics/ attendance/ leave/ reports/   (M1)
-│   │       └── homework/ exams/ fees/ timetable/ calendar/ announcements/ notifications/ complaints/   (M2)
+│   │       └── homework/ exams/ fees/ timetable/ school_calendar/ announcements/ notifications/ complaints/ lookups/   (M2)
 │   └── tests/
 │       ├── conftest.py        shared fixtures (M1 creates, M2 extends only by adding)
 │       ├── core/  ...         (M1)
@@ -56,6 +56,16 @@ Each backend module folder has the same files: `models.py`, `schemas.py`, `route
 | `README.md` | Each member owns their own "Modules" section; the setup section is Faizan's, and Matee proposes edits |
 | Flutter `pubspec.yaml`, router, API client | See section 5 |
 | `docs/*.md` | Edit only in a PR that the other member approves |
+
+## 3a. How Member 2's code reaches Member 1's models (`ops_common/core_refs.py`)
+
+Member 2's modules never import Member 1's models directly. They import them from **one file**,
+`backend/app/modules/ops_common/core_refs.py` (`User`, `Student`, `Teacher`, `Parent`, `Section`, `SchoolClass`,
+`Subject`, `AcademicYear`, `StudentParent`, `TeacherAssignment`). Until Member 1's code is merged, that file points at
+temporary stand-ins in `app/core/stub_models.py`. When his real models land, only that import block (and
+`app/db_models.py`) changes. Member 1: please keep those class names, or tell Matee the new names.
+Temporary stand-ins to be replaced or deleted by Member 1: `app/core/*`, `app/modules/auth_stub/`,
+`migrations/versions/0001_core_foundation.py`, `seeds/seed_core.py`, `tests/conftest.py`.
 
 ## 4. Git workflow
 
@@ -98,7 +108,7 @@ JWT_ACCESS_MINUTES=30
 JWT_REFRESH_DAYS=7
 CORS_ORIGINS=http://localhost:5000,http://localhost:3000
 APP_ENV=development
-SEED_ADMIN_PASSWORD=CHANGE_ME
+SEED_DEFAULT_PASSWORD=CHANGE_ME     # password for the demo accounts created by the seed scripts (dev only)
 # --- member 2 ---
 UPLOAD_DIR=./uploads
 MAX_UPLOAD_MB=5
