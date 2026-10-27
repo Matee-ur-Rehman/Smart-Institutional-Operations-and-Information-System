@@ -1,0 +1,22 @@
+name: ops_features
+description: Member 2 modules (homework, exams, fees, timetable, calendar, announcements, notifications, complaints) for the Trends High School apps. UNCOMPILED - see README.md.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dio: ^5.4.3
+  provider: ^6.1.2
+  flutter_secure_storage: ^9.2.2
+  intl: ^0.19.0
+  file_picker: ^8.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
