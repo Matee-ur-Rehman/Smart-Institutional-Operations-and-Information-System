@@ -1,0 +1,17 @@
+# --- shared / member 1 (stub list, Faizan may extend) ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+SQLAlchemy==2.0.36
+psycopg2-binary==2.9.10
+alembic==1.14.0
+pydantic==2.10.4
+pydantic-settings==2.7.0
+email-validator==2.2.0
+python-jose[cryptography]==3.3.0
+bcrypt==4.2.1
+python-multipart==0.0.20
+# --- member 2 ---
+firebase-admin==6.6.0   # optional: only imported when FCM_ENABLED=true
+# --- testing ---
+pytest==8.3.4
+httpx==0.28.1
