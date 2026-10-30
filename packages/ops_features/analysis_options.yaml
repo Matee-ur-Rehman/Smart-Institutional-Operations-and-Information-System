@@ -4,6 +4,8 @@ analyzer:
   errors:
     # Kept as info so that deprecations in newer Flutter versions do not block the first run.
     deprecated_member_use: info
+  exclude:
+    - build/**
 
 linter:
   rules:
