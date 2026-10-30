@@ -1,9 +1,8 @@
-/// Defensive JSON helpers: the backend sends money as JSON numbers, dates as YYYY-MM-DD and
-/// times as HH:MM:SS, but these helpers never throw on a missing or oddly typed field.
+
 
 String jStr(dynamic v, [String fallback = '']) => v == null ? fallback : v.toString();
 
-String? jStrN(dynamic v) => v == null ? null : v.toString();
+String? jStrN(dynamic v) => v?.toString();
 
 double jNum(dynamic v, [double fallback = 0]) {
   if (v is num) return v.toDouble();
