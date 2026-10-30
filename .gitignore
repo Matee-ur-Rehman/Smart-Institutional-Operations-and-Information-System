@@ -21,3 +21,5 @@ backend/uploads/
 # OS / editor
 .DS_Store
 Thumbs.db
+*.db
+packages/ops_features/pubspec.lock
