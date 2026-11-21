@@ -1,0 +1,24 @@
+// Optional push notifications. Copy to lib/push_setup.dart and follow PUSH_SETUP.md.
+// NOT compiled or tested (needs a Firebase project and the Flutter SDK).
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+/// Call once from main() before runApp: `await initPush();`
+Future<void> initPush() async {
+  try {
+    await Firebase.initializeApp(); // reads android/app/google-services.json
+  } catch (_) {
+    // Firebase not configured: the app still works, notifications stay in-app only
+  }
+}
+
+/// Pass as `AppConfig(pushTokenProvider: fcmToken)`. Returns null when push is unavailable or refused.
+Future<String?> fcmToken() async {
+  try {
+    final settings = await FirebaseMessaging.instance.requestPermission();
+    if (settings.authorizationStatus == AuthorizationStatus.denied) return null;
+    return await FirebaseMessaging.instance.getToken();
+  } catch (_) {
+    return null;
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "SIOIS - Trends High School",
+  "short_name": "SIOIS",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F6F8F8",
+  "theme_color": "#0F766E",
+  "description": "Admin and teacher portal of the Smart Institutional Operations and Information System.",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "icons": []
+}

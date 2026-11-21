@@ -1,0 +1,20 @@
+# --- member 1 (shared core) ---
+fastapi==0.161.1
+uvicorn[standard]==0.54.0
+SQLAlchemy==2.1.6
+alembic==1.20.1
+psycopg2-binary==2.9.13
+pydantic==2.13.5
+pydantic-settings==2.16.1
+python-jose[cryptography]==3.5.0
+bcrypt==5.0.0
+email-validator==2.3.0
+pytest==9.1.1
+httpx==0.28.1
+# --- member 2 (operations modules) ---
+python-multipart==0.0.20
+tzdata==2025.2
+reportlab==5.0.1
+# Optional, only when FCM_ENABLED=true (see README "Push notifications"):
+# firebase-admin==6.9.0
+pypdf==5.9.0  # tests only (reads generated PDFs)
