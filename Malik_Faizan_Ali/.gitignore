@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.pyc
+uploads/*
+!uploads/.gitkeep
+.dart_tool/
+build/
+*.whl
+.venv/

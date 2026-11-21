@@ -1,0 +1,24 @@
+name: siois_mobile
+description: SIOIS mobile app (Teacher, Student, Parent) for Trends High School, Hassan Abdal.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  siois_ops:
+    path: ../shared/siois_ops
+  # Push notifications are optional and need your own Firebase project: see PUSH_SETUP.md
+  # (add firebase_core + firebase_messaging there, not here, so the app builds without google-services.json).
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
