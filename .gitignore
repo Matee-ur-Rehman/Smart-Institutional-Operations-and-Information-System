@@ -21,6 +21,7 @@ backend/uploads/
 **/.flutter-plugins*
 **/.idea/
 *.iml
+
 # OS / editor
 .DS_Store
 Thumbs.db
