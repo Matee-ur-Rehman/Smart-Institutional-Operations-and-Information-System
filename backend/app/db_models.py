@@ -5,6 +5,7 @@ seed scripts and the tests). Each member keeps their own block; add one line per
 # TEMPORARY: replace this line with Faizan's real model imports when they are merged.
 import app.core.stub_models  # noqa: F401
 
+
 # --- member 2 ---------------------------------------------------------------------------------
 import app.modules.announcements.models  # noqa: F401
 import app.modules.complaints.models  # noqa: F401
