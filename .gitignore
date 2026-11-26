@@ -4,14 +4,17 @@ __pycache__/
 .venv/
 venv/
 .pytest_cache/
+
 # Secrets and local config
 .env
 *.env.local
 google-services.json
 *firebase*adminsdk*.json
 service-account*.json
+
 # Uploaded files
 backend/uploads/
+
 # Flutter
 **/build/
 **/.dart_tool/
